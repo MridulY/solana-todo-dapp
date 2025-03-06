@@ -27,9 +27,11 @@ pub mod todo_list_app {
         task.text = text.clone(); // Store task text
 
         // Logging for debugging (Visible in Solana logs)
-        msg!("Task Created by: {}", author.key);
+        msg!("Task successfully created");
+        msg!("Task ID: {}", task.id);
+        msg!("Created by: {}", author.key);
         msg!("Task Text: {}", text);
-        msg!("Task Created At: {}", clock.unix_timestamp);
+        msg!("Created At: {}", clock.unix_timestamp);
 
         Ok(())
     }
@@ -55,6 +57,10 @@ pub mod todo_list_app {
         task.is_done = true;
         task.updated_at = clock.unix_timestamp;
 
+        msg!("Task marked as deleted");
+        msg!("Task ID: {}", task.id);
+        msg!("Updated At: {}", clock.unix_timestamp);
+
         Ok(())
     }
 
@@ -72,6 +78,11 @@ pub mod todo_list_app {
         // Toggle task completion status
         task.is_done = !task.is_done;
         task.updated_at = clock.unix_timestamp;
+
+        msg!("Task completion status toggled");
+        msg!("Task ID: {}", task.id);
+        msg!("New Completion Status: {}", task.is_done);
+        msg!("Updated At: {}", clock.unix_timestamp);
 
         Ok(())
     }
